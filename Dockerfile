@@ -11,8 +11,8 @@ RUN apt-get update && apt-get -y install \
 WORKDIR /opt
 RUN git clone https://github.com/trustedsec/social-engineer-toolkit/ set/
 WORKDIR set
+RUN pip install -r requirements.txt
 RUN python setup.py install
-#RUN sed -i 's/^\(METASPLOIT_PATH=\).*/\1\/opt\/msf/' /etc/setoolkit/set.config
 ADD set.config /etc/setoolkit/
 
 CMD /bin/bash
