@@ -11,5 +11,5 @@ docker build -t phocean/set .
 # Run
 
 ```
-docker run --rm -ti phocean/set
+docker run --rm -it --net=host -v /home/phocean/.msf4:/root/.msf4:Z -v /tmp/msf:/tmp/data:Z --name=set phocean/set
 ```
