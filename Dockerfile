@@ -2,17 +2,13 @@ FROM phocean/msf
 
 MAINTAINER Phocean <jc@phocean.net>
 
-# Base packages
+WORKDIR /opt
+
 RUN apt-get update && apt-get -y install \
   python-pip git \
-  && rm -rf /var/lib/apt/lists/*
-
-# Get Metasploit
-WORKDIR /opt
-RUN git clone https://github.com/trustedsec/social-engineer-toolkit/ set/
-WORKDIR set
-RUN pip install -r requirements.txt
-RUN python setup.py install
-ADD set.config /etc/setoolkit/
+  && rm -rf /var/lib/apt/lists/* \
+  && git clone https://github.com/trustedsec/social-engineer-toolkit/ set/ \
+  && cd set \
+  && pip install -r requirements.txt
 
 CMD /bin/bash
